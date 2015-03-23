@@ -1,0 +1,358 @@
+//Joshua Lemmon 100555320
+//Feb 11, 2015
+//Lab 5 - Calendar
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//function declarations
+void printMonth(int month, int year);
+void printYear(int year);
+void output(string m, int w, int y, int d);
+
+int main()
+{
+	int year;
+	int month;
+	char choice;
+	//prompt for the year of the desired calendar
+	cout << "Enter year: ";
+	cin >> year;
+	//asks if user wants whole year or single month
+	cout << "Print specific month(M) or whole year(Y)?" << endl;
+	cin >> choice;
+
+	//calls either year or month function depending on input
+	if (choice == 'Y' || choice == 'y')
+	{
+		printYear(year);
+	}
+	else if (choice == 'M' || choice == 'm')
+	{
+		cout << "Enter month number (Jan = 1, Dec = 12): ";
+		cin >> month;
+		printMonth(month, year);
+	}
+	return 0;
+}
+
+void printMonth(int month, int year)
+{
+	int weekDay;
+	bool leapYear = false;
+	//determines if its a leap year
+	if (year % 400 == 0)
+	{
+		leapYear = true;
+	}
+	else if (year % 100 == 0)
+	{
+		leapYear = false;
+	}
+	else if (year % 4 == 0)
+	{
+		leapYear = true;
+	}
+	//getting first day of week in january
+	weekDay = (1 + 5 * ((year - 1) % 4) + 4 * ((year - 1) % 100) + 6 * ((year - 1) % 400)) % 7;
+	if (month == 1)//if the month selected is january
+	{
+		output("January", weekDay, year, 31);
+	}
+	else if (month == 2)
+	{
+		int febSize = 28;
+		if (leapYear)
+		{
+			febSize = 29;
+			weekDay -= 4;
+		}
+		else
+		{
+			weekDay -= 4;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("February", weekDay, year, febSize);
+	}
+	else if (month == 3)
+	{
+		//gets the day of the month march starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay -= 3;
+		}
+		else
+		{
+			weekDay -= 4;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("March", weekDay, year, 31);
+	}
+	else if (month == 4)
+	{
+		//gets the day of the month april starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay += 0;
+		}
+		else
+		{
+			weekDay -= 1;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("April", weekDay, year, 30);
+	}
+	else if (month == 5)
+	{
+		//gets the day of the month march starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay -= 5;
+		}
+		else
+		{
+			weekDay += 1;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("May", weekDay, year, 31);
+	}
+	else if (month == 6)
+	{
+		//gets the day of the month march starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay -= 2;
+		}
+		else
+		{
+			weekDay -= 3;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("June", weekDay, year, 30);
+	}
+	else if (month == 7)
+	{
+		//gets the day of the month march starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay -= 0;
+		}
+		else
+		{
+			weekDay -= 1;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("July", weekDay, year, 31);
+	}
+	else if (month == 8)
+	{
+		//gets the day of the month march starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay -= 4;
+		}
+		else
+		{
+			weekDay += 2;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("August", weekDay, year, 31);
+	}
+	else if (month == 9)
+	{
+		//gets the day of the month march starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay -= 1;
+		}
+		else
+		{
+			weekDay -= 2;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("September", weekDay, year, 30);
+	}
+	else if (month == 10)
+	{
+		//gets the day of the month march starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay += 1;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("October", weekDay, year, 31);
+	}
+	else if (month == 11)
+	{
+		//gets the day of the month march starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay -= 3;
+		}
+		else
+		{
+			weekDay -= 4;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("November", weekDay, year, 30);
+	}
+	else if (month == 12)
+	{
+		//gets the day of the month march starts on, accounts for leap year
+		if (leapYear)
+		{
+			weekDay -= 1;
+		}
+		else
+		{
+			weekDay -= 2;
+		}
+		//if weekDay isnt in between 0-6 then it will be changed to the equivalent
+		//eg -1 will be 6 or a saturday
+		if (weekDay < 0)
+		{
+			weekDay = 7 + weekDay;
+		}
+		else if (weekDay > 6)
+		{
+			weekDay = -7 + weekDay;
+		}
+		output("December", weekDay, year, 31);
+	}
+}
+//prints the calendar for the whole year
+void output(string m, int w,int y, int d)
+{
+	cout << "\n" << m << " " << y << endl;
+	cout << " S  M Tu  W Th  F  S\n";
+	//loops from 0 to the month size plus the weekDay value to account for
+	//blank spaces
+	for (int i = 0; i < d + w; i++)
+	{
+		//if loop hasnt iterated to first day of month yet output blank space
+		if (i<w)
+		{
+			cout << "   ";
+		}
+		//if loop has reached first day of the month
+		else if (i >= w)
+		{
+			//if the date is less than the 10th a space is outputted to account for
+			//size difference
+			if ((i - w + 1)<10)
+			{
+				cout << " " << (i - w + 1) << " ";
+			}
+			else
+			{
+				cout << " " << (i - w) + 1;
+			}
+			//if last iteration was a saturday new line is started
+			if ((i + 1) % 7 == 0)
+			{
+				cout << endl;
+			}
+		}
+	}
+	cout << endl;
+}
+void printYear(int year)
+{
+	for (int i = 1; i <13; i++)
+	{
+		printMonth(i, year);
+	}
+
+}
